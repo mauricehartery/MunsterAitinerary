@@ -349,6 +349,14 @@
   .weather-head{ padding:18px 24px; border-bottom:1px solid var(--hairline); display:flex; justify-content:space-between; align-items:center; }
   .weather-head h3{ font-family:'Anton'; font-size:16px; color:var(--gold); margin:0; letter-spacing:0.03em;}
   .weather-head .fine{ font-size:11px; color:var(--text-dim); }
+  .met-link-row{
+    padding:14px 24px 18px; border-top:1px dashed var(--hairline);
+  }
+  .met-link{
+    font-size:12.5px; font-weight:700; color:var(--gold);
+    text-decoration:none; letter-spacing:0.02em;
+  }
+  .met-link:hover{ text-decoration:underline; }
   .weather-table{ width:100%; border-collapse:collapse; }
   .weather-table th{
     font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim);
@@ -460,7 +468,7 @@
       <div class="t-row"><span class="t-time">12:05</span><span class="t-title">Ref Check</span><span class="t-loc">Changing Room</span></div>
     </div>
     <div class="t-item">
-      <div class="t-row"><span class="t-time">12:15</span><span class="t-title">Kickers Out</span></div>
+      <div class="t-row"><span class="t-time">12:19</span><span class="t-title">Kickers Out</span></div>
     </div>
     <div class="t-item">
       <div class="t-row"><span class="t-time">12:24</span><span class="t-title">All Players Out</span></div>
@@ -475,7 +483,7 @@
       <div class="t-row"><span class="t-time">12:52</span><span class="t-title">Back to Changing Room</span></div>
     </div>
     <div class="t-item">
-      <div class="t-row"><span class="t-time">12:59</span><span class="t-title">Out to Pitch</span></div>
+      <div class="t-row"><span class="t-time">12:58</span><span class="t-title">Out to Pitch</span></div>
     </div>
     <div class="t-item kickoff">
       <div class="t-row"><span class="t-time">13:00</span><span class="t-title">Kick Off</span><span class="t-loc">Pitch</span></div>
@@ -564,6 +572,11 @@
       </thead>
       <tbody id="weather-body"></tbody>
     </table>
+    <div class="met-link-row">
+      <a href="https://www.met.ie/weather-forecast/limerick-city" target="_blank" rel="noopener" class="met-link">
+        View live Met Éireann forecast for Limerick (10:00–16:00 tomorrow) →
+      </a>
+    </div>
   </div>
 
 </div>
