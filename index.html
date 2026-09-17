@@ -357,12 +357,16 @@
     text-decoration:none; letter-spacing:0.02em;
   }
   .met-link:hover{ text-decoration:underline; }
-  .weather-table{ width:100%; border-collapse:collapse; }
+  .weather-table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .weather-table{ width:100%; border-collapse:collapse; min-width:640px; }
   .weather-table th{
     font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim);
     text-align:left; padding:12px 20px 8px; font-weight:600;
   }
   .weather-table td{ padding:10px 20px; font-size:13px; border-top:1px solid var(--hairline); }
+  .weather-table th:first-child, .weather-table td:first-child{
+    position:sticky; left:0; background:var(--navy-2); z-index:1;
+  }
   .weather-table .rowlabel{ color:var(--text-dim); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; }
   .weather-table .mono{ font-size:13px; }
   .temp-cell{ font-weight:700; }
@@ -564,14 +568,16 @@
       <h3>Weather — Thomond Park</h3>
       <span class="fine">Friday 18 September 2026</span>
     </div>
-    <table class="weather-table">
-      <thead>
-        <tr>
-          <th>Time</th><th>10:00</th><th>11:00</th><th>12:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th>
-        </tr>
-      </thead>
-      <tbody id="weather-body"></tbody>
-    </table>
+    <div class="weather-table-scroll">
+      <table class="weather-table">
+        <thead>
+          <tr>
+            <th>Time</th><th>10:00</th><th>11:00</th><th>12:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th>
+          </tr>
+        </thead>
+        <tbody id="weather-body"></tbody>
+      </table>
+    </div>
     <div class="met-link-row">
       <a href="https://www.met.ie/weather-forecast/limerick-city" target="_blank" rel="noopener" class="met-link">
         View live Met Éireann forecast for Limerick (10:00–16:00 tomorrow) →
