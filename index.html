@@ -126,8 +126,8 @@
   }
   .tabs{
     max-width:1180px; margin:0 auto;
-    display:flex; gap:4px; padding:0 28px;
-    overflow-x:auto;
+    display:flex; flex-wrap:wrap; gap:4px; padding:6px 28px;
+    justify-content:center;
   }
   .tab-btn{
     appearance:none; border:none; background:none; cursor:pointer;
@@ -196,6 +196,12 @@
   .t-title{ font-size:15px; font-weight:600; }
   .t-item.kickoff .t-title{ font-family:'Anton'; font-size:19px; letter-spacing:0.02em; }
   .t-loc{ font-size:12px; color:var(--text-dim); margin-left:auto; }
+  .t-link{
+    font-size:11px; color:var(--gold); font-weight:700; letter-spacing:0.03em;
+    text-decoration:none; border:1px solid var(--gold-deep); border-radius:999px;
+    padding:3px 10px; cursor:pointer; white-space:nowrap; transition:background .15s ease;
+  }
+  .t-link:hover{ background:rgba(255,214,23,0.12); }
   .t-note{ font-size:12.5px; color:var(--text-dim); margin-top:4px; font-style:italic; }
 
   .half-time-note{
@@ -316,6 +322,20 @@
     width:100%; border-radius:8px; border:1px solid var(--hairline);
     margin-top:12px; display:block;
   }
+  .food-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:10px; margin-top:6px;
+  }
+  .food-item{
+    border:1px solid var(--hairline); border-radius:8px;
+    padding:12px 14px; background:var(--navy);
+    font-size:13.5px; font-weight:600; color:var(--text);
+    display:flex; align-items:center; gap:8px;
+  }
+  .food-item::before{
+    content:''; width:6px; height:6px; border-radius:50%;
+    background:var(--gold); flex-shrink:0;
+  }
 
   .dress-row{ display:flex; gap:10px; margin-top:10px; }
   .dress-pill{
@@ -389,6 +409,8 @@
     <button class="tab-btn" data-tab="squad"><span class="n">02</span> Squad</button>
     <button class="tab-btn" data-tab="officials"><span class="n">03</span> Officials</button>
     <button class="tab-btn" data-tab="info"><span class="n">04</span> Info &amp; Weather</button>
+    <button class="tab-btn" data-tab="warmup"><span class="n">05</span> Team Warm Up</button>
+    <button class="tab-btn" data-tab="food"><span class="n">06</span> Food</button>
   </div>
 </div>
 
@@ -401,10 +423,13 @@
   </div>
   <div class="timeline">
     <div class="t-item">
+      <div class="t-row"><span class="t-time">09:30</span><span class="t-title">Strapping Available</span><span class="t-loc">Physio Room</span></div>
+    </div>
+    <div class="t-item">
       <div class="t-row"><span class="t-time">09:45</span><span class="t-title">Arrive in HPC</span><span class="t-loc mono">V94 X9VK</span></div>
     </div>
     <div class="t-item">
-      <div class="t-row"><span class="t-time">10:00</span><span class="t-title">Breakfast</span><span class="t-loc">Kitchen</span></div>
+      <div class="t-row"><span class="t-time">10:00</span><span class="t-title">Breakfast</span><span class="t-loc">Kitchen</span><a class="t-link" onclick="switchTab('food')">Menu →</a></div>
     </div>
     <div class="t-item">
       <div class="t-row"><span class="t-time">10:40</span><span class="t-title">Team Meeting</span><span class="t-loc">Auditorium</span></div>
@@ -426,6 +451,9 @@
       <div class="t-row"><span class="t-time">11:45</span><span class="t-title">Arrive at Thomond Park</span><span class="t-loc mono">V94 XWK5</span></div>
     </div>
     <div class="t-item">
+      <div class="t-row"><span class="t-time">11:50</span><span class="t-title">Strapping Available</span><span class="t-loc">Changing Room</span></div>
+    </div>
+    <div class="t-item">
       <div class="t-row"><span class="t-time">12:00</span><span class="t-title">Coin Toss</span><span class="t-loc">Tunnel</span></div>
     </div>
     <div class="t-item">
@@ -441,7 +469,7 @@
       <div class="t-row"><span class="t-time">12:25</span><span class="t-title">Individual Warm Ups</span><span class="t-loc">Pitch</span></div>
     </div>
     <div class="t-item">
-      <div class="t-row"><span class="t-time">12:35</span><span class="t-title">Team Warm Up Commences</span><span class="t-loc">Pitch</span></div>
+      <div class="t-row"><span class="t-time">12:35</span><span class="t-title">Team Warm Up Commences</span><span class="t-loc">Pitch</span><a class="t-link" onclick="switchTab('warmup')">Details →</a></div>
     </div>
     <div class="t-item">
       <div class="t-row"><span class="t-time">12:52</span><span class="t-title">Back to Changing Room</span></div>
@@ -540,20 +568,99 @@
 
 </div>
 
+<!-- ===================== PANEL: TEAM WARM UP ===================== -->
+<div class="panel" id="warmup">
+  <div class="section-head">
+    <h2>Team Warm Up</h2>
+    <span class="sub">Munster Dev v Connacht Dev — Shannon Pitch, Thomond Park</span>
+  </div>
+
+  <div class="phase-label">
+    <span class="tag">Warm Up</span>
+    <span class="rule"></span>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:19</span><span class="t-title">Kickers</span><span class="t-loc">5 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:24</span><span class="t-title">Last Player to Leave Sheds</span><span class="t-loc">10 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:34</span><span class="t-title">Connection</span><span class="t-loc">Water and messaging · 1 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:35</span><span class="t-title">Handling</span><span class="t-loc">Gauntlet Drill · 3 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:38</span><span class="t-title">Phase Attack</span><span class="t-loc">Landmarks &amp; Clicks · 2 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:40</span><span class="t-title">Connection</span><span class="t-loc">Water and messaging · 1 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:41</span><span class="t-title">Units</span><span class="t-loc">5 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:46</span><span class="t-title">Connection</span><span class="t-loc">Water and messaging · 1 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:47</span><span class="t-title">Collision</span><span class="t-loc">3 min</span></div>
+      <div class="t-note">Fwds: 3 v 3 Carry/Clean, Cage, 4 Tackles &nbsp;·&nbsp; Bks: Edge D</div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:50</span><span class="t-title">D Landmarks</span><span class="t-loc">2 min</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:52</span><span class="t-title">Finish Warm Up — Return to Change Rooms</span><span class="t-loc">6 min 30 sec</span></div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">12:58</span><span class="t-title">Starting Team Run On</span><span class="t-loc">1 min 30 sec</span></div>
+    </div>
+    <div class="t-item kickoff">
+      <div class="t-row"><span class="t-time">13:00</span><span class="t-title">Kick Off</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PANEL: FOOD ===================== -->
+<div class="panel" id="food">
+  <div class="section-head">
+    <h2>Food</h2>
+    <span class="sub">Breakfast — HPC Kitchen, 10:00</span>
+  </div>
+
+  <div class="info-card">
+    <h3>Breakfast Menu</h3>
+    <div class="food-grid">
+      <div class="food-item">Porridge with Honey/Maple Syrup</div>
+      <div class="food-item">Pancakes</div>
+      <div class="food-item">Fruit</div>
+      <div class="food-item">Yoghurt</div>
+      <div class="food-item">Flapjacks</div>
+      <div class="food-item">Banana Bread</div>
+      <div class="food-item">Poached Eggs</div>
+      <div class="food-item">Baked Beans</div>
+    </div>
+  </div>
+</div>
+
 <footer>Munster Rugby · Connacht Rugby — Matchday Itinerary</footer>
 
 <script>
   // ---- Tabs ----
   const buttons = document.querySelectorAll('.tab-btn');
   const panels = document.querySelectorAll('.panel');
+  function switchTab(tabName){
+    buttons.forEach(b=>b.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    const btn = Array.from(buttons).find(b => b.dataset.tab === tabName);
+    if (btn) btn.classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
   buttons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      buttons.forEach(b=>b.classList.remove('active'));
-      panels.forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
+    btn.addEventListener('click', ()=> switchTab(btn.dataset.tab));
   });
 
   // ---- Squad data ----
@@ -583,6 +690,7 @@
     {n:21, name:"Frankie Og Sheehan"},
     {n:22, name:"Cathal O'Mara"},
     {n:23, name:"Bobby O'Callaghan"},
+    {n:24, name:"Riain Macfarlane"},
   ];
   const squad = starting.concat(bench);
   const byNum = n => squad.find(p => p.n === n);
