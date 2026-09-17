@@ -203,6 +203,14 @@
   }
   .t-link:hover{ background:rgba(255,214,23,0.12); }
   .t-note{ font-size:12.5px; color:var(--text-dim); margin-top:4px; font-style:italic; }
+  .t-attendees{
+    display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; max-width:420px;
+  }
+  .t-attendees .pill{
+    font-size:11px; font-style:normal; color:var(--text-dim);
+    border:1px solid var(--hairline); border-radius:999px;
+    padding:3px 10px; white-space:nowrap;
+  }
 
   .half-time-note{
     margin:8px 0 8px 20px; padding:10px 14px; border-left:2px solid var(--gold);
@@ -444,7 +452,19 @@
       <div class="t-row"><span class="t-time">10:00</span><span class="t-title">Breakfast</span><span class="t-loc">Kitchen</span><a class="t-link" onclick="switchTab('food')">Menu →</a></div>
     </div>
     <div class="t-item">
-      <div class="t-row"><span class="t-time">10:40</span><span class="t-title">Team Meeting</span><span class="t-loc">Auditorium</span></div>
+      <div class="t-row"><span class="t-time">10:35</span><span class="t-title">Game Drivers Meeting</span><span class="t-loc">Auditorium</span></div>
+      <div class="t-attendees">
+        <span class="pill">Michael Foy</span>
+        <span class="pill">Chris Barrett</span>
+        <span class="pill">Aaron Moloney</span>
+        <span class="pill">Fionn Rowesome</span>
+        <span class="pill">Frankie Og Sheahan</span>
+        <span class="pill">Luke Murphy</span>
+        <span class="pill">James O'Leary</span>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-row"><span class="t-time">10:45</span><span class="t-title">Team Meeting</span><span class="t-loc">Auditorium</span></div>
     </div>
     <div class="t-item">
       <div class="t-row"><span class="t-time">11:10</span><span class="t-title">Walkthrough</span><span class="t-loc">Courts</span></div>
