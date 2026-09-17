@@ -567,7 +567,7 @@
     <table class="weather-table">
       <thead>
         <tr>
-          <th>Time</th><th>01:00</th><th>04:00</th><th>07:00</th><th>10:00</th><th>13:00</th><th>16:00</th><th>19:00</th><th>22:00</th>
+          <th>Time</th><th>10:00</th><th>11:00</th><th>12:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th>
         </tr>
       </thead>
       <tbody id="weather-body"></tbody>
@@ -748,18 +748,21 @@
 
   // ---- Weather data ----
   const weather = {
-    times: ['01:00','04:00','07:00','10:00','13:00','16:00','19:00','22:00'],
-    icons: ['cloud','cloud','cloud','rain','rain','rain','rain','cloud'],
-    wind: [18,18,17,16,19,26,24,19],
-    gust: [32,31,31,36,44,47,45,40],
-    temp: [13,13,13,14,16,16,16,15],
-    feels: [9,9,9,11,13,13,13,13],
-    precip: ['0.0mm','0.0mm','0.0mm','0.1mm','0.5mm','0.8mm','0.5mm','0.3mm']
+    times: ['10:00','11:00','12:00','13:00','14:00','15:00','16:00'],
+    icons: ['rain','rain','rain','rain','drizzle','drizzle','cloud'],
+    chance: [80,95,85,85,65,35,20],
+    wind: [22,23,28,28,29,31,31],
+    gust: [41,46,50,51,53,54,54],
+    temp: [13,14,15,16,17,17,17],
+    feels: [9,10,11,12,13,13,13]
   };
 
   function icon(type){
     if(type === 'rain'){
       return `<svg class="wicon" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 15a4 4 0 010-8 5 5 0 019.6-1.5A3.5 3.5 0 0117.5 13" stroke="#a9b3cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 15h11a3 3 0 000-6" stroke="#a9b3cf" stroke-width="1.6" stroke-linecap="round"/><path d="M9 18l-1 3M13 18l-1 3M17 18l-1 3" stroke="#5b8fd9" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+    }
+    if(type === 'drizzle'){
+      return `<svg class="wicon" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 15a4 4 0 010-8 5 5 0 019.6-1.5A3.5 3.5 0 0117.5 13" stroke="#a9b3cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 15h11a3 3 0 000-6" stroke="#a9b3cf" stroke-width="1.6" stroke-linecap="round"/><path d="M10 18l-0.7 2M15 18l-0.7 2" stroke="#5b8fd9" stroke-width="1.6" stroke-linecap="round"/></svg>`;
     }
     if(type === 'cloud'){
       return `<svg class="wicon" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 17a4 4 0 010-8 5 5 0 019.6-1.5A3.5 3.5 0 0117.5 15" stroke="#a9b3cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 17h11a3 3 0 000-6" stroke="#a9b3cf" stroke-width="1.6" stroke-linecap="round"/></svg>`;
@@ -770,11 +773,11 @@
   const maxTemp = Math.max(...weather.temp);
   const rows = [
     { label:'Weather', render: i => `<td>${icon(weather.icons[i])}</td>` },
+    { label:'Chance of Rain', render: i => `<td class="mono" style="color:var(--text-dim)">${weather.chance[i]}%</td>` },
     { label:'Wind (km/h)', render: i => `<td class="mono">${weather.wind[i]}</td>` },
     { label:'Gust (km/h)', render: i => `<td class="mono">${weather.gust[i]}</td>` },
     { label:'Temperature', render: i => `<td class="mono temp-cell ${weather.temp[i]===maxTemp?'hot':''}">${weather.temp[i]}°C</td>` },
     { label:'Feels Like', render: i => `<td class="mono">${weather.feels[i]}°C</td>` },
-    { label:'Precipitation', render: i => `<td class="mono" style="color:var(--text-dim)">${weather.precip[i]}</td>` },
   ];
 
   document.getElementById('weather-body').innerHTML = rows.map(r => `
